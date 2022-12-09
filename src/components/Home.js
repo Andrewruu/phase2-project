@@ -1,6 +1,8 @@
 import React from "react";
+import { Redirect } from "react-router";
 
-function Home() {
+function Home({isLoggedIn}) {
+    if (!isLoggedIn) return <Redirect to="/login" />;
     return (
         <section id="home">
             <h1>

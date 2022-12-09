@@ -1,11 +1,13 @@
 import React, { useState, useEffect} from "react";
+import { Redirect } from "react-router";
 import NovelCard from "./NovelCard";
 
 
 
-function MyNovelList({novels}){
-    const [myNovels, setMyNovel] = useState([])
+function MyNovelList({novels, isLoggedIn}){
     
+    const [myNovels, setMyNovel] = useState([])
+
     useEffect(() => {
         fetch("http://localhost:3000/user/1")
           .then(res => res.json())

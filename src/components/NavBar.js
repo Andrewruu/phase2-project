@@ -1,5 +1,5 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory} from "react-router-dom"
 
 const novelheader ={
         display: "flex",
@@ -10,7 +10,16 @@ const novelheader ={
         color: "white",
 }
 
-function NavBar() {
+function NavBar({ setIsLoggedIn }) {
+    const history = useHistory();
+
+    function handleLogout() {
+        setIsLoggedIn(false);
+        history.push("/login");
+    }
+
+    
+
     return (
         <nav style={novelheader}>
             <NavLink  exact to="/">Home</NavLink>
