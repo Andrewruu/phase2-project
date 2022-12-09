@@ -16,7 +16,19 @@ h1{
 nav {
   background-color: cornsilk;
 }
+nav button{
 
+  margin: .9rem 2rem;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  height: 2rem;
+  width: max-content;
+  color: black;
+  font-size: 18px;
+  justify-self: center;
+  
+}
 nav a {
   display: inline-block;
   margin: 1rem 2rem;

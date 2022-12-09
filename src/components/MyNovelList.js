@@ -4,19 +4,11 @@ import NovelCard from "./NovelCard";
 
 
 
-function MyNovelList({novels, isLoggedIn}){
+function MyNovelList({myNovels, isLoggedIn}){
+    if (!isLoggedIn) return <Redirect to="/login" />;
     
-    const [myNovels, setMyNovel] = useState([])
 
-    useEffect(() => {
-        fetch("http://localhost:3000/user/1")
-          .then(res => res.json())
-          .then(data => setMyNovel(data.novels.map((myID)=>
-            ( 
-                novels.find((novel)=> novel.id === myID)
-            )
-          )))
-        }, [])
+
 
     
     const novelsList = (

@@ -10,13 +10,20 @@ const novelheader ={
         color: "white",
 }
 
-function NavBar({ setIsLoggedIn }) {
+function NavBar({ setIsLoggedIn, isLoggedIn}) {
     const history = useHistory();
 
     function handleLogout() {
         setIsLoggedIn(false);
         history.push("/login");
     }
+    
+    let link = <NavLink  to="/login">Login</NavLink>
+    let logout = null
+        if (isLoggedIn){
+           link = <NavLink  to="/MyNovelList">My Novels</NavLink>
+           logout = <button onClick={handleLogout}>LogOut</button>
+        }
 
     
 
@@ -24,7 +31,8 @@ function NavBar({ setIsLoggedIn }) {
         <nav style={novelheader}>
             <NavLink  exact to="/">Home</NavLink>
             <NavLink  to="/novellist">Novels</NavLink>
-            <NavLink  to="/MyNovelList">My Novels</NavLink>
+            {link}
+            {logout}
         </nav>
     )
 }

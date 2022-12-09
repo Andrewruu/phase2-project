@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Login({ setIsLoggedIn }) {
+function Login({ setIsLoggedIn, loggedin }) {
   const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
@@ -19,6 +19,7 @@ function Login({ setIsLoggedIn }) {
     e.preventDefault();
 
     setIsLoggedIn(true);
+    loggedin()
     history.push("/MyNovelList");
   }
 
