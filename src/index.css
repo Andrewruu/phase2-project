@@ -3,19 +3,40 @@ body {
   font-family: monospace;
 }
 
-#novel-header {
-  display: flex;
-  justify-content: center;
-  background: #e2352f;
-  opacity: .8;
-  height: 7rem;
-  padding: 1rem;
-  color: white;
-}
-
 #novel-header img {
   height: 6rem;
   width: auto;
+}
+
+h1{
+  text-align: center;
+  font-size: 35px;
+}
+
+nav {
+  background-color: cornsilk;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1rem 2rem;
+  text-decoration: none;
+  font-size: 2em;
+  color: white;
+  border-bottom: 2px solid white;
+  transition: 0.1s;
+}
+
+nav a:hover,
+nav a:active {
+  color: gold;
+  border-bottom: 2px solid gold;
+}
+
+nav a.active {
+  background-color: gold;
+  color: black;
+  border-bottom: 2px solid black;
 }
 
 #novel-collection {
