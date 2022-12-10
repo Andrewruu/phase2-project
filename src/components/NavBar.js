@@ -10,11 +10,13 @@ const novelheader ={
         color: "white",
 }
 
-function NavBar({ setIsLoggedIn, isLoggedIn}) {
+function NavBar({ setIsLoggedIn, isLoggedIn, setMyNovel, setUser}) {
     const history = useHistory();
 
     function handleLogout() {
         setIsLoggedIn(false);
+        setMyNovel([]);
+        setUser(null)
         history.push("/login");
     }
     

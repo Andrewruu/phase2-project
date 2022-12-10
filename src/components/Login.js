@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
-function Login({ setIsLoggedIn, loggedin }) {
-  const history = useHistory();
+
+function Login({user, handleLogin }) {
+  
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -18,9 +18,7 @@ function Login({ setIsLoggedIn, loggedin }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setIsLoggedIn(true);
-    loggedin()
-    history.push("/MyNovelList");
+    handleLogin(formData.username, formData.password)
   }
 
   return (
@@ -31,15 +29,19 @@ function Login({ setIsLoggedIn, loggedin }) {
         name="username"
         value={formData.username}
         onChange={handleChange}
+        placeholder="username"
       />
       <input
         type="password"
         name="password"
         value={formData.password}
         onChange={handleChange}
+        placeholder="password"
       />
       <button type="submit">Login</button>
+      {user === null ? null:<p>Login Fail</p>}
     </form>
+    
   );
 }
 

@@ -6,11 +6,7 @@ import NovelCard from "./NovelCard";
 
 function MyNovelList({myNovels, isLoggedIn}){
     if (!isLoggedIn) return <Redirect to="/login" />;
-    
-
-
-
-    
+  
     const novelsList = (
         <div id="novel-collection">{
             myNovels.map((novel)=>(
