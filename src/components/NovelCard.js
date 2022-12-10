@@ -1,7 +1,8 @@
 import React from "react";
 
-export default function NovelCard({novel:{title,image}}){
-
+export default function NovelCard({novel}){
+    const {title, image} = novel
+    
     return(
         <div className="card">
             <h2>{title}</h2>

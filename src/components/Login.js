@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
+function Login({user, handleLogin,isLoggedIn }) {
 
-function Login({user, handleLogin }) {
-  
   const [formData, setFormData] = useState({
     username: "",
     password: "",

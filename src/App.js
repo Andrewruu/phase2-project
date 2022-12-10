@@ -52,7 +52,7 @@ export default function App(){
             <NavBar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} setMyNovel={setMyNovel} setUser={setUser}/>
             <Switch>
                 <Route exact path="/login">
-                    <Login user={user} handleLogin={handleLogin}/>
+                    <Login user={user} handleLogin={handleLogin} isLoggedIn={isLoggedIn}/>
                 </Route>
                 <Route exact path="/novellist">
                     <NovelList novels={novels}/>
