@@ -23,7 +23,7 @@ function NavBar({ setIsLoggedIn, isLoggedIn, setMyNovel, setUser}) {
     let link = <NavLink  to="/login">Login</NavLink>
     let logout = null
         if (isLoggedIn){
-           link = <NavLink  to="/MyNovelList">My Novels</NavLink>
+           link = <NavLink  to={`/MyNovelList`}>My Novels</NavLink>
            logout = <button onClick={handleLogout}>LogOut</button>
         }
 

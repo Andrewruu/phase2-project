@@ -25,18 +25,17 @@ export default function App(){
     function handleLogin(username, pass){
         fetch("http://localhost:3000/user")
             .then(res => res.json())
-            .then(data => setUser(data.map((user)=>
+            .then(data => data.forEach((user)=>
               {
                 if(user.username === username && user.password === pass)
                 {
-                    console.log(user)
                     myNovleLists(user.id)
                     setIsLoggedIn(true)
                     history.push("/MyNovelList");
-                    return user
+                    setUser(user)
                 }
               }
-            )))
+            ))
     }
     function myNovleLists(id){
         fetch(`http://localhost:3000/user/${id}`)
@@ -56,10 +55,10 @@ export default function App(){
                     <Login user={user} handleLogin={handleLogin} isLoggedIn={isLoggedIn}/>
                 </Route>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels}/>
+                    <NovelList novels={novels} user={user} isLoggedIn={isLoggedIn}/>
                 </Route>
-                <Route exact path="/MyNovelList">
-                    <MyNovelList myNovels={myNovels} isLoggedIn={isLoggedIn}/>
+                <Route exact path={`/MyNovelList`}>
+                    <MyNovelList myNovels={myNovels} isLoggedIn={isLoggedIn} />
                 </Route>
                 <Route path="/Novels/:id">
                     <NovelDetails/>
