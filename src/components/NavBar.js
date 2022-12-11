@@ -32,7 +32,7 @@ function NavBar({ setIsLoggedIn, isLoggedIn, setMyNovel, setUser}) {
     return (
         <nav style={novelheader}>
             <NavLink  exact to="/">Home</NavLink>
-            <NavLink  to="/novellist">Novels</NavLink>
+            <NavLink  to="/Novels">Novels</NavLink>
             {link}
             {logout}
         </nav>

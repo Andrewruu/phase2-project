@@ -6,6 +6,8 @@ import MyNovelList from "./components/MyNovelList"
 import Home from "./components/Home"
 import Login from "./components/Login"
 import { useHistory } from "react-router-dom";
+import NovelDetails from "./components/NovelDetails"
+
 
 export default function App(){
     const [novels, setNovels] = useState([])
@@ -36,7 +38,6 @@ export default function App(){
               }
             )))
     }
-    console.log(user)
     function myNovleLists(id){
         fetch(`http://localhost:3000/user/${id}`)
             .then(res => res.json())
@@ -54,11 +55,14 @@ export default function App(){
                 <Route exact path="/login">
                     <Login user={user} handleLogin={handleLogin} isLoggedIn={isLoggedIn}/>
                 </Route>
-                <Route exact path="/novellist">
+                <Route exact path="/Novels">
                     <NovelList novels={novels}/>
                 </Route>
-                <Route exact path="/mynovellist">
+                <Route exact path="/MyNovelList">
                     <MyNovelList myNovels={myNovels} isLoggedIn={isLoggedIn}/>
+                </Route>
+                <Route path="/Novels/:id">
+                    <NovelDetails/>
                 </Route>
                 <Route exact path="/">
                     <Home isLoggedIn={isLoggedIn}/>
