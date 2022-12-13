@@ -20,21 +20,13 @@ function NavBar({ setIsLoggedIn, isLoggedIn, setMyNovel, setUser}) {
         history.push("/login");
     }
     
-    let link = <NavLink  to="/login">Login</NavLink>
-    let logout = null
-        if (isLoggedIn){
-           link = <NavLink  to={`/MyNovelList`}>My Novels</NavLink>
-           logout = <button onClick={handleLogout}>LogOut</button>
-        }
-
     
 
     return (
         <nav style={novelheader}>
             <NavLink  exact to="/">Home</NavLink>
             <NavLink  to="/Novels">Novels</NavLink>
-            {link}
-            {logout}
+
         </nav>
     )
 }
