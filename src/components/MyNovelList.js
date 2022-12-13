@@ -1,15 +1,15 @@
-import React, { useState, useEffect} from "react";
+import React from "react";
 import { Redirect } from "react-router";
 import NovelCard from "./NovelCard";
 
 
 
-function MyNovelList({myNovels, isLoggedIn}){
+function MyNovelList({myNovels, isLoggedIn, user, updateUser}){
     if (!isLoggedIn) return <Redirect to="/login" />;
     const novelsList = (
         <div id="novel-collection">{
             myNovels.map((novel)=>(
-             <NovelCard key={novel.id} novel={novel} inList={true} isLoggedIn={true}/>
+             <NovelCard key={novel.title} novel={novel} inList={true} isLoggedIn={true} user={user} updateUser={updateUser}/>
           ))
           }</div>
     )

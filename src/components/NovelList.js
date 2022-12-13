@@ -2,7 +2,7 @@ import React from "react";
 import NovelCard from "./NovelCard";
 
 
-function NovelList({novels, user,isLoggedIn}){
+function NovelList({novels, user,isLoggedIn ,updateUser}){
     let inList = false
 
     const novelsList = (
@@ -15,11 +15,11 @@ function NovelList({novels, user,isLoggedIn}){
                         inList =false
                     }
                 }  
-             return <NovelCard key={novel.id} novel={novel} inList={inList} isLoggedIn={isLoggedIn}/>
+             return <NovelCard key={novel.id} novel={novel} inList={inList} isLoggedIn={isLoggedIn} user={user} updateUser={updateUser}/>
             })
           }</div>
       )
-
+    inList = false
 
     return(
         <div>
