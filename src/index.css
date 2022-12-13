@@ -74,6 +74,24 @@ nav a.active {
   width: auto;
 }
 
+.novel-detail h2{
+  text-align: center;
+}
+.novel-detail h3{
+  text-align: center;
+}
+.novel-detail p{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: grey solid 1px;
+  padding: 1rem;
+  width: 25rem;
+  height: auto;
+
+}
+
 .card {
   text-align: center;
   border: grey solid 1px;

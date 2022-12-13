@@ -7,6 +7,7 @@ function Login({user, handleLogin,isLoggedIn }) {
     password: "",
   });
 
+  const [logFail, setLogFail] = useState(false)
   function handleChange(e) {
     setFormData({
       ...formData,
@@ -16,8 +17,8 @@ function Login({user, handleLogin,isLoggedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     handleLogin(formData.username, formData.password)
+    setLogFail(true)
   }
 
   return (
@@ -38,7 +39,7 @@ function Login({user, handleLogin,isLoggedIn }) {
         placeholder="password"
       />
       <button type="submit">Login</button>
-      {user === null ? null:<p>Login Fail</p>}
+      {!logFail ? null:<p>Login Fail</p>}
     </form>
     
   );

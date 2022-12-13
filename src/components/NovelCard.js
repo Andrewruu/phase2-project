@@ -2,12 +2,10 @@ import React, {useState} from "react";
 
 import { Link } from "react-router-dom";
 
-export default function NovelCard({novel, inList, isLoggedIn, user, updateUser}){
+export default function NovelCard({novel, inList, isLoggedIn, user, updateUser, updateMyNovel}){
     const {id, title, image, chapters} = novel
     const [inListState, setinListState] = useState(inList)
 
-
-    
     function handleAddRemove(){
         if(inListState){
             handleRemove()
@@ -21,6 +19,7 @@ export default function NovelCard({novel, inList, isLoggedIn, user, updateUser})
 
     function handleUpdate(userObj){
         updateUser(userObj)
+        updateMyNovel(userObj)
     }
 
     function handleAdd(){
@@ -54,8 +53,8 @@ export default function NovelCard({novel, inList, isLoggedIn, user, updateUser})
         fetch(`http://localhost:3000/user/${user.id}`,{
         method: "PATCH",
         headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
         }, body:JSON.stringify(updateUserObj)
         }).then(r => r.json())
         .then(handleUpdate(updateUserObj))

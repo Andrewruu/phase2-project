@@ -23,6 +23,9 @@ export default function NovelDetails(){
             alt={novel.title}
             className="novel-detail-avatar"
             />
+            <h2>Total Chapters {novel.chapters}</h2>
+            <h3>Summary</h3>
+            <p> {novel.summary} </p>
         </div>
     )
 }

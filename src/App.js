@@ -15,14 +15,14 @@ export default function App(){
     const [myNovels, setMyNovel] = useState([])
     const [user, setUser] = useState(null)
     const history = useHistory();
-
+    
     useEffect(() => {
         fetch("http://localhost:3000/novels")
           .then(res => res.json())
           .then(setNovels);
       }, [])
     
-    useEffect(()=>{
+    /* useEffect(()=>{
         if (user !==null){
             fetch(`http://localhost:3000/user/${user.id}`)
             .then(res => res.json())
@@ -32,7 +32,7 @@ export default function App(){
             )
             )))
         }
-    },[user,novels])
+    },[user,novels]) */
 
     function handleLogin(username, pass){
         fetch("http://localhost:3000/user")
@@ -41,18 +41,21 @@ export default function App(){
               {
                 if(user.username === username && user.password === pass)
                 {
+                    updateMyNovel(user)
                     setIsLoggedIn(true)
                     history.push("/MyNovelList");
-                    updateUser(user)
+                    setUser(user)
                 }
               }
             ))
     }
-
-    function updateUser(user){
-        setUser(user)
+    function updateMyNovel(userObj){
+        setMyNovel(userObj.novels.map((myID)=>
+            ( 
+                novels.find((novel)=> novel.id === myID)
+            )
+        ))
     }
-    
     return (
         <div className="app">
             <NavBar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} setMyNovel={setMyNovel} setUser={setUser}/>
@@ -61,10 +64,10 @@ export default function App(){
                     <Login user={user} handleLogin={handleLogin} isLoggedIn={isLoggedIn}/>
                 </Route>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels} user={user} isLoggedIn={isLoggedIn} updateUser={updateUser}/>
+                    <NovelList novels={novels} user={user} isLoggedIn={isLoggedIn} updateUser={setUser} updateMyNovel={updateMyNovel}/>
                 </Route>
                 <Route exact path={`/MyNovelList`}>
-                    <MyNovelList myNovels={myNovels} isLoggedIn={isLoggedIn} user={user} updateUser={updateUser}/>
+                    <MyNovelList myNovels={myNovels} isLoggedIn={isLoggedIn} user={user} updateUser={setUser} updateMyNovel={updateMyNovel}/>
                 </Route>
                 <Route path="/Novels/:id">
                     <NovelDetails/>
