@@ -1,18 +1,23 @@
-import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
+import React, {useState,useEffect} from "react";
+import { useHistory, useParams } from "react-router-dom";
 
-export default function EditNovel({handelEditNovel, eNovel}) {
+export default function EditNovel({handelEditNovel}) {
+    const params = useParams()
     const history = useHistory()
-
     const [novelObj, setNovelObj]= useState({
-        id: eNovel.id,
-        title: eNovel.title,
-        image: eNovel.image,
-        likes: eNovel.likes,
-        chapters: eNovel.chapters,
-        summary: eNovel.summary
-
+            id: "",
+            title: "",
+            image: "",
+            likes: true,
+            chapters: "",
+            summary: ""
     })
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/Novels/${params.id}`)
+            .then(res => res.json())
+            .then(data => setNovelObj(data))
+    }, [params.id])
 
     function handleChange(e) {
         let value = e.target.value
@@ -50,6 +55,7 @@ export default function EditNovel({handelEditNovel, eNovel}) {
             .then(history.push("/Novels"))
     }
 
+    
 
     return (
         <div className="add-novel-form">

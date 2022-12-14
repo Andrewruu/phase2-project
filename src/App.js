@@ -27,10 +27,6 @@ export default function App(){
         setNovels([...novels, newNovel]);
     }
     
-    function editNovel(novelToEdit){
-        setENovel(novelToEdit)
-    }
-    
     function handelEditNovel(editNovel){
         setNovels(novels.map(novel => novel.id === editNovel.id? editNovel: novel))
     }
@@ -44,13 +40,13 @@ export default function App(){
             <NavBar/>
             <Switch>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels} updateNovels={updateNovels} editNovel={editNovel} handelRemoveNovel={handelRemoveNovel}/>
+                    <NovelList novels={novels} updateNovels={updateNovels} handelRemoveNovel={handelRemoveNovel}/>
                 </Route>
                 <Route exact path="/NewNovel">
                     <AddNovel handleAddNovel={handleAddNovel}/>
                 </Route>
                 <Route exact path="/EditNovel/:id">
-                    <EditNovel handelEditNovel={handelEditNovel} eNovel={eNovel}/>
+                    <EditNovel handelEditNovel={handelEditNovel}/>
                 </Route>
                 <Route path="/Novels/:id">
                     <NovelDetails/>

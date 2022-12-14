@@ -2,11 +2,11 @@ import React from "react";
 import NovelCard from "./NovelCard";
 
 
-function NovelList({novels, updateNovels, editNovel, handelRemoveNovel}){
+function NovelList({novels, updateNovels, handelRemoveNovel}){
     const novelsList = (
         <div id="novel-collection">{
             novels.map((novel)=>{
-             return <NovelCard key={novel.id} novel={novel} updateNovels={updateNovels} editNovel={editNovel} handelRemoveNovel={handelRemoveNovel}/>
+             return <NovelCard key={novel.id} novel={novel} updateNovels={updateNovels} handelRemoveNovel={handelRemoveNovel}/>
             })
           }</div>
       )

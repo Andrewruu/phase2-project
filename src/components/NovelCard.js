@@ -26,9 +26,6 @@ export default function NovelCard({novel,updateNovels,editNovel,handelRemoveNove
         }).then(updateNovels(updatedNovelLike))
         .then(setLiked(!liked))
     }
-    function hendelEdit(){
-        editNovel(novel)
-    }
 
     function handleRemove(){
         fetch(`http://localhost:3000/novels/${id}`,{
@@ -61,7 +58,7 @@ export default function NovelCard({novel,updateNovels,editNovel,handelRemoveNove
             <p>Current Chapter {chapters}</p>
             
             <Link to={`/Novels/${id}`}>More Details</Link>
-            <Link to={`/EditNovel/${id}`} onClick={hendelEdit}>Edit</Link>
+            <Link to={`/EditNovel/${id}`}>Edit</Link>
             <button onClick={handleRemove}>Remove</button>
 
         </div>
