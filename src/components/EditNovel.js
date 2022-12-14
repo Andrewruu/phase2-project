@@ -59,7 +59,7 @@ export default function EditNovel({handelEditNovel}) {
 
     return (
         <div className="add-novel-form">
-            <h1>Add Novels</h1>
+            <h1>Edit Novels</h1>
             <form onSubmit={handelSubmit}>
             <p>Title </p>
                 <input
