@@ -43,7 +43,7 @@ export default function AddNovel({handleAddNovel}) {
             body: JSON.stringify(newNovel),
           })
             .then((r) => r.json())
-            .then(handleAddNovel(newNovel))
+            .then(data => handleAddNovel(data))
             .then(history.push("/Novels"))
     }
 

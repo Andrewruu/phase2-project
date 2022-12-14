@@ -9,7 +9,7 @@ import EditNovel from "./components/EditNovel"
 
 export default function App(){
     const [novels, setNovels] = useState([])
-    const [eNovel, setENovel] = useState({})
+
 
     useEffect(() => {
         fetch("http://localhost:3000/novels")
