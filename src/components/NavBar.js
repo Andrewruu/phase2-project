@@ -1,5 +1,5 @@
 import React from "react"
-import { NavLink, useHistory} from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 const novelheader ={
         display: "flex",
@@ -10,23 +10,13 @@ const novelheader ={
         color: "white",
 }
 
-function NavBar({ setIsLoggedIn, isLoggedIn, setMyNovel, setUser}) {
-    const history = useHistory();
-
-    function handleLogout() {
-        setIsLoggedIn(false);
-        setMyNovel([]);
-        setUser(null)
-        history.push("/login");
-    }
-    
-    
-
+function NavBar() {
+ 
     return (
         <nav style={novelheader}>
             <NavLink  exact to="/">Home</NavLink>
             <NavLink  to="/Novels">Novels</NavLink>
-
+            <NavLink  to="/NewNovel">Add Novel</NavLink>
         </nav>
     )
 }

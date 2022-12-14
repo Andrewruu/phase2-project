@@ -3,35 +3,42 @@ import { Route, Switch } from "react-router-dom"
 import NavBar from "./components/NavBar"
 import NovelList from "./components/NovelList"
 import Home from "./components/Home"
-import { useHistory } from "react-router-dom";
 import NovelDetails from "./components/NovelDetails"
+import AddNovel from "./components/AddNovel"
 
 
 export default function App(){
     const [novels, setNovels] = useState([])
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [myNovels, setMyNovel] = useState([])
-    const [user, setUser] = useState(null)
-
+    
     useEffect(() => {
         fetch("http://localhost:3000/novels")
           .then(res => res.json())
           .then(setNovels);
       }, [])
 
+    function updateNovels(novelObj){
+        setNovels(novels.map(novel=> {
+           return novel.id === novelObj.id ? novelObj: novel
+           
+        }))
+
+    }
 
     return (
         <div className="app">
-            <NavBar setMyNovel={setMyNovel} />
+            <NavBar/>
             <Switch>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels} user={user} />
+                    <NovelList novels={novels} updateNovels={updateNovels}/>
+                </Route>
+                <Route exact path="/NewNovel">
+                    <AddNovel/>
                 </Route>
                 <Route path="/Novels/:id">
                     <NovelDetails/>
                 </Route>
                 <Route exact path="/">
-                    <Home isLoggedIn={isLoggedIn}/>
+                    <Home/>
                 </Route>
             </Switch>
         </div>
