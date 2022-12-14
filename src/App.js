@@ -49,7 +49,7 @@ export default function App(){
                     <EditNovel handelEditNovel={handelEditNovel}/>
                 </Route>
                 <Route path="/Novels/:id">
-                    <NovelDetails/>
+                    <NovelDetails updateNovels={updateNovels} handelRemoveNovel={handelRemoveNovel}/>
                 </Route>
                 <Route exact path="/">
                     <Home/>

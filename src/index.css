@@ -88,6 +88,16 @@ nav a.active {
 .novel-detail h3{
   text-align: center;
 }
+.novel-detail h4{
+  text-align: center;
+}
+.novel-detail {
+  text-align: center;
+}
+.novel-detail button{
+  margin-top: 1rem;
+  height: 2rem;
+}
 .novel-detail p{
   display: block;
   margin-left: auto;

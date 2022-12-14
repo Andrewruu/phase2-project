@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import { Link } from "react-router-dom";
 
-export default function NovelCard({novel,updateNovels,editNovel,handelRemoveNovel}){
+export default function NovelCard({novel,updateNovels,handelRemoveNovel}){
     const {id, title, image, chapters, likes, summery} = novel
     const [liked, setLiked] = useState(likes)
     
@@ -36,6 +36,7 @@ export default function NovelCard({novel,updateNovels,editNovel,handelRemoveNove
           })
           .then(res => res.json())
           .then(handelRemoveNovel(novel))
+          
     }
 
     const likedStyles = {
