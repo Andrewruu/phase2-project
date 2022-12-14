@@ -21,18 +21,20 @@ export default function App(){
            return novel.id === novelObj.id ? novelObj: novel
            
         }))
-
     }
+    function handleAddNovel(newNovel) {
+        setNovels([...novels, newNovel]);
+      }
 
     return (
         <div className="app">
             <NavBar/>
             <Switch>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels} updateNovels={updateNovels}/>
+                    <NovelList novels={novels} updateNovels={updateNovels} />
                 </Route>
                 <Route exact path="/NewNovel">
-                    <AddNovel/>
+                    <AddNovel handleAddNovel={handleAddNovel}/>
                 </Route>
                 <Route path="/Novels/:id">
                     <NovelDetails/>
