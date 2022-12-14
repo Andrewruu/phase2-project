@@ -116,12 +116,15 @@ nav a.active {
   font-size: 20px;
 }
 
-.card .buttonHolder button {
+.card .buttonHolder {
   margin: 1px;
 }
 
 .card h4{
   margin: 5px;
+}
+.card button{
+  height: 2rem;
 }
 
 .novel-avatar {

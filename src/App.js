@@ -5,11 +5,12 @@ import NovelList from "./components/NovelList"
 import Home from "./components/Home"
 import NovelDetails from "./components/NovelDetails"
 import AddNovel from "./components/AddNovel"
-
+import EditNovel from "./components/EditNovel"
 
 export default function App(){
     const [novels, setNovels] = useState([])
-    
+    const [eNovel, setENovel] = useState({})
+
     useEffect(() => {
         fetch("http://localhost:3000/novels")
           .then(res => res.json())
@@ -24,17 +25,32 @@ export default function App(){
     }
     function handleAddNovel(newNovel) {
         setNovels([...novels, newNovel]);
-      }
+    }
+    
+    function editNovel(novelToEdit){
+        setENovel(novelToEdit)
+    }
+    
+    function handelEditNovel(editNovel){
+        setNovels(novels.map(novel => novel.id === editNovel.id? editNovel: novel))
+    }
+
+    function handelRemoveNovel(removeNovel){
+        setNovels(novels.filter(novel => novel.id !== removeNovel.id))
+    }
 
     return (
         <div className="app">
             <NavBar/>
             <Switch>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels} updateNovels={updateNovels} />
+                    <NovelList novels={novels} updateNovels={updateNovels} editNovel={editNovel} handelRemoveNovel={handelRemoveNovel}/>
                 </Route>
                 <Route exact path="/NewNovel">
                     <AddNovel handleAddNovel={handleAddNovel}/>
+                </Route>
+                <Route exact path="/EditNovel/:id">
+                    <EditNovel handelEditNovel={handelEditNovel} eNovel={eNovel}/>
                 </Route>
                 <Route path="/Novels/:id">
                     <NovelDetails/>

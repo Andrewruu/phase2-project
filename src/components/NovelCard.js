@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import { Link } from "react-router-dom";
 
-export default function NovelCard({novel,updateNovels}){
+export default function NovelCard({novel,updateNovels,editNovel,handelRemoveNovel}){
     const {id, title, image, chapters, likes, summery} = novel
     const [liked, setLiked] = useState(likes)
     
@@ -26,6 +26,20 @@ export default function NovelCard({novel,updateNovels}){
         }).then(updateNovels(updatedNovelLike))
         .then(setLiked(!liked))
     }
+    function hendelEdit(){
+        editNovel(novel)
+    }
+
+    function handleRemove(){
+        fetch(`http://localhost:3000/novels/${id}`,{
+            method: 'DELETE',
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(handelRemoveNovel(novel))
+    }
 
     const likedStyles = {
         color: "red"
@@ -36,6 +50,7 @@ export default function NovelCard({novel,updateNovels}){
 
     return(
         <div className="card">
+            
             <h2>{title}</h2>
             <img
             src={image}
@@ -43,9 +58,12 @@ export default function NovelCard({novel,updateNovels}){
             className="novel-avatar"
             />
             {liked? <h4 style={likedStyles} onClick={handleLike}>Like ♥</h4>:<h4 style={dislikedStyles} onClick={handleLike}>Like ♡</h4>}
-            <Link to={`/Novels/${id}`}>More Details</Link>
             <p>Current Chapter {chapters}</p>
-  
+            
+            <Link to={`/Novels/${id}`}>More Details</Link>
+            <Link to={`/EditNovel/${id}`} onClick={hendelEdit}>Edit</Link>
+            <button onClick={handleRemove}>Remove</button>
+
         </div>
     )
 }
