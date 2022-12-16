@@ -8,15 +8,9 @@ export default function EditNovel({updateNovel,novels}) {
 
 
     function handleChange(e) {
-        let value = e.target.value
-        if (value==="true"){
-            value = true
-        }else if(value === "false"){
-            value = false
-        }
         setNovelObj({
           ...novelObj,
-          [e.target.name]: value,
+          [e.target.name]: e.target.value,
         })
       }
     
@@ -26,7 +20,7 @@ export default function EditNovel({updateNovel,novels}) {
             id: novelObj.id,
             title: novelObj.title,
             image: novelObj.image,
-            liked: novelObj.liked,
+            liked: novelObj.liked == 'true'? true : false,
             chapters: novelObj.chapters,
             summary: novelObj.summary
         }
@@ -70,7 +64,7 @@ export default function EditNovel({updateNovel,novels}) {
                 label="like"
                 value={true}
                 onChange={handleChange}
-                checked={novelObj.liked === true}
+                checked={novelObj.liked === true||novelObj.liked === "true"}
                 />
             <label>Yes</label>
             <input
@@ -79,7 +73,7 @@ export default function EditNovel({updateNovel,novels}) {
                 label="dislike"
                 value={false}
                 onChange={handleChange}
-                checked={novelObj.liked === false}
+                checked={novelObj.liked === false||novelObj.liked === "false"}
                 />
             <label>No</label>
             <p>Chapters</p>
