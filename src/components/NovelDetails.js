@@ -33,7 +33,7 @@ export default function NovelDetails({updateNovels,handelRemoveNovel}){
             },
             body:JSON.stringify({likes: !novel.likes})
         }).then(updateNovels(updatedNovelLike))
-        .then(setLiked(!novel.liked))
+        .then(setLiked(!liked))
     }
     function handleRemove(){
         fetch(`http://localhost:3000/novels/${novel.id}`,{
