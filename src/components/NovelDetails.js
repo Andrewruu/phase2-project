@@ -1,16 +1,12 @@
 import React ,{ useEffect, useState} from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-export default function NovelDetails({updateNovels,handelRemoveNovel}){
-    const [novel, setNovel] = useState(null)
+export default function NovelDetails({updateNovel,handelRemoveNovel, novels}){
     const params = useParams()
-    const [liked, setLiked] = useState(true)
+
+    const novel = novels.find((novel)=>novel.id == params.id)
+    const [like, setLike] = useState(novel.liked)
     const history = useHistory()
-    useEffect(() => {
-        fetch(`http://localhost:3000/Novels/${params.id}`)
-            .then(res => res.json())
-            .then(data => setNovel(data))
-    }, [params.id])
 
     if(novel===null){
         return <h1> Loading...</h1>
@@ -20,9 +16,9 @@ export default function NovelDetails({updateNovels,handelRemoveNovel}){
             id: novel.id,
             title: novel.title,
             image: novel.image,
-            likes: !novel.likes,
+            liked: !novel.liked,
             chapters: novel.chapters,
-            summery: novel.summery
+            summary: novel.summary
 
         }
         fetch(`http://localhost:3000/novels/${novel.id}`,{
@@ -31,9 +27,13 @@ export default function NovelDetails({updateNovels,handelRemoveNovel}){
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
-            body:JSON.stringify({likes: !novel.likes})
-        }).then(updateNovels(updatedNovelLike))
-        .then(setLiked(!liked))
+            body:JSON.stringify({liked: !like})
+        })
+        .then (res => res.json())
+        .then(()=>{
+            updateNovel(updatedNovelLike)
+            setLike(!like)
+            })
     }
     function handleRemove(){
         fetch(`http://localhost:3000/novels/${novel.id}`,{
@@ -43,8 +43,9 @@ export default function NovelDetails({updateNovels,handelRemoveNovel}){
             }
           })
           .then(res => res.json())
-          .then(handelRemoveNovel(novel))
-          .then(history.push("/Novels"))
+          .then(()=>history.push("/Novels"))
+          .then(()=>handelRemoveNovel(novel))
+          
     }
 
     const likedStyles = {
@@ -62,7 +63,7 @@ export default function NovelDetails({updateNovels,handelRemoveNovel}){
             alt={novel.title}
             className="novel-detail-avatar"
             />
-            {liked? <h4 style={likedStyles} onClick={handleLike}>Like ♥</h4>:<h4 style={dislikedStyles} onClick={handleLike}>Like ♡</h4>}
+            {like? <h4 style={likedStyles} onClick={handleLike}>Like ♥</h4>:<h4 style={dislikedStyles} onClick={handleLike}>Like ♡</h4>}
             <h2>Total Chapters {novel.chapters}</h2>
             <Link to={`/EditNovel/${novel.id}`}>Edit</Link>
             <br></br>

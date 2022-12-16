@@ -1,23 +1,11 @@
 import React, {useState,useEffect} from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-export default function EditNovel({handelEditNovel}) {
+export default function EditNovel({updateNovel,novels}) {
     const params = useParams()
     const history = useHistory()
-    const [novelObj, setNovelObj]= useState({
-            id: "",
-            title: "",
-            image: "",
-            likes: true,
-            chapters: "",
-            summary: ""
-    })
+    const [novelObj, setNovelObj]= useState(novels.find((novel)=>novel.id == params.id))
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/Novels/${params.id}`)
-            .then(res => res.json())
-            .then(data => setNovelObj(data))
-    }, [params.id])
 
     function handleChange(e) {
         let value = e.target.value
@@ -38,7 +26,7 @@ export default function EditNovel({handelEditNovel}) {
             id: novelObj.id,
             title: novelObj.title,
             image: novelObj.image,
-            likes: novelObj.likes,
+            liked: novelObj.liked,
             chapters: novelObj.chapters,
             summary: novelObj.summary
         }
@@ -51,7 +39,7 @@ export default function EditNovel({handelEditNovel}) {
             body: JSON.stringify(newNovel),
           })
             .then((r) => r.json())
-            .then(handelEditNovel(newNovel))
+            .then(updateNovel(newNovel))
             .then(history.push("/Novels"))
     }
 
@@ -78,20 +66,20 @@ export default function EditNovel({handelEditNovel}) {
             <p>Favorite</p>
                 <input
                 type="radio"
-                name="likes"
+                name="liked"
                 label="like"
                 value={true}
                 onChange={handleChange}
-                checked={novelObj.likes === true}
+                checked={novelObj.liked === true}
                 />
             <label>Yes</label>
             <input
                 type="radio"
-                name="likes"
+                name="liked"
                 label="dislike"
                 value={false}
                 onChange={handleChange}
-                checked={novelObj.likes === false}
+                checked={novelObj.liked === false}
                 />
             <label>No</label>
             <p>Chapters</p>

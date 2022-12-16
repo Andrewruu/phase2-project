@@ -7,7 +7,7 @@ export default function AddNovel({handleAddNovel}) {
     const [novelObj, setNovelObj]= useState({
         title: "",
         image: "",
-        likes: true,
+        liked: true,
         chapters: "",
         summary: ""
 
@@ -31,7 +31,7 @@ export default function AddNovel({handleAddNovel}) {
         const newNovel ={
             title: novelObj.title,
             image: novelObj.image,
-            likes: novelObj.likes,
+            liked: novelObj.liked,
             chapters: novelObj.chapters,
             summary: novelObj.summary
         }
@@ -44,7 +44,7 @@ export default function AddNovel({handleAddNovel}) {
           })
             .then((r) => r.json())
             .then(data => handleAddNovel(data))
-            .then(history.push("/Novels"))
+            .then(()=>history.push("/Novels"))
     }
 
 
@@ -69,20 +69,20 @@ export default function AddNovel({handleAddNovel}) {
             <p>Favorite</p>
                 <input
                 type="radio"
-                name="likes"
+                name="liked"
                 label="like"
                 value={true}
                 onChange={handleChange}
-                checked={novelObj.likes === true}
+                checked={novelObj.liked === true}
                 />
             <label>Yes</label>
             <input
                 type="radio"
-                name="likes"
+                name="liked"
                 label="dislike"
                 value={false}
                 onChange={handleChange}
-                checked={novelObj.likes === false}
+                checked={novelObj.liked === false}
                 />
             <label>No</label>
             <p>Chapters</p>

@@ -17,19 +17,13 @@ export default function App(){
           .then(setNovels);
       }, [])
 
-    function updateNovels(novelObj){
-        setNovels(novels.map(novel=> {
-           return novel.id === novelObj.id ? novelObj: novel
-           
-        }))
+    function updateNovel(novelObj){
+        setNovels(novels.map(novel=>(novel.id === novelObj.id ? novelObj: novel)))
     }
     function handleAddNovel(newNovel) {
         setNovels([...novels, newNovel]);
     }
     
-    function handelEditNovel(editNovel){
-        setNovels(novels.map(novel => novel.id === editNovel.id? editNovel: novel))
-    }
 
     function handelRemoveNovel(removeNovel){
         setNovels(novels.filter(novel => novel.id !== removeNovel.id))
@@ -40,16 +34,16 @@ export default function App(){
             <NavBar/>
             <Switch>
                 <Route exact path="/Novels">
-                    <NovelList novels={novels} updateNovels={updateNovels} handelRemoveNovel={handelRemoveNovel}/>
+                    <NovelList novels={novels} updateNovel={updateNovel} handelRemoveNovel={handelRemoveNovel}/>
                 </Route>
                 <Route exact path="/NewNovel">
                     <AddNovel handleAddNovel={handleAddNovel}/>
                 </Route>
                 <Route exact path="/EditNovel/:id">
-                    <EditNovel handelEditNovel={handelEditNovel}/>
+                    <EditNovel updateNovel={updateNovel} novels={novels}/>
                 </Route>
                 <Route path="/Novels/:id">
-                    <NovelDetails updateNovels={updateNovels} handelRemoveNovel={handelRemoveNovel}/>
+                    <NovelDetails updateNovel={updateNovel} handelRemoveNovel={handelRemoveNovel} novels={novels}/>
                 </Route>
                 <Route exact path="/">
                     <Home/>

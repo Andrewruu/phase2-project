@@ -2,18 +2,18 @@ import React, {useState} from "react";
 
 import { Link } from "react-router-dom";
 
-export default function NovelCard({novel,updateNovels,handelRemoveNovel}){
-    const {id, title, image, chapters, likes, summery} = novel
-    const [liked, setLiked] = useState(likes)
+export default function NovelCard({novel,updateNovel,handelRemoveNovel}){
+    const {id, title, image, chapters, liked, summary} = novel
+    const [like, setLike] = useState(liked)
     
     function handleLike(){
         const updatedNovelLike ={
             id: id,
             title: title,
             image: image,
-            likes: !likes,
+            liked: !liked,
             chapters: chapters,
-            summery: summery
+            summary: summary
 
         }
         fetch(`http://localhost:3000/novels/${id}`,{
@@ -22,9 +22,14 @@ export default function NovelCard({novel,updateNovels,handelRemoveNovel}){
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
-            body:JSON.stringify({likes: !likes})
-        }).then(updateNovels(updatedNovelLike))
-        .then(setLiked(!liked))
+            body:JSON.stringify({liked: !liked})
+        })
+        .then (res => res.json())
+        .then(()=>{
+            updateNovel(updatedNovelLike)
+            setLike(!like)
+            })
+        console.log(like)
     }
 
     function handleRemove(){
@@ -35,14 +40,14 @@ export default function NovelCard({novel,updateNovels,handelRemoveNovel}){
             }
           })
           .then(res => res.json())
-          .then(handelRemoveNovel(novel))
+          .then(()=>handelRemoveNovel(novel))
           
     }
 
-    const likedStyles = {
+    const likeStyles = {
         color: "red"
     }
-    const dislikedStyles = {
+    const dislikeStyles = {
         color: "black"
     }
 
@@ -55,7 +60,7 @@ export default function NovelCard({novel,updateNovels,handelRemoveNovel}){
             alt={title}
             className="novel-avatar"
             />
-            {liked? <h4 style={likedStyles} onClick={handleLike}>Like ♥</h4>:<h4 style={dislikedStyles} onClick={handleLike}>Like ♡</h4>}
+            {like? <h4 style={likeStyles} onClick={handleLike}>Like ♥</h4>:<h4 style={dislikeStyles} onClick={handleLike}>Like ♡</h4>}
             <p>Current Chapter {chapters}</p>
             
             <Link to={`/Novels/${id}`}>More Details</Link>
