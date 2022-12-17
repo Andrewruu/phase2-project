@@ -43,8 +43,11 @@ export default function NovelDetails({updateNovel,handelRemoveNovel, novels}){
             }
           })
           .then(res => res.json())
-          .then(()=>history.push("/Novels"))
-          .then(()=>handelRemoveNovel(novel))
+          .then(()=>{
+            history.push("/Novels")
+            handelRemoveNovel(novel)
+        })
+
           
     }
 
