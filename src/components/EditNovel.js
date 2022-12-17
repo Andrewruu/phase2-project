@@ -33,8 +33,10 @@ export default function EditNovel({updateNovel,novels}) {
             body: JSON.stringify(newNovel),
           })
             .then((r) => r.json())
-            .then(updateNovel(newNovel))
-            .then(history.push("/Novels"))
+            .then(()=>{
+                updateNovel(newNovel)
+                history.push("/Novels")
+            })
     }
 
     
