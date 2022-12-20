@@ -25,7 +25,7 @@ export default function AddNovel({handleAddNovel}) {
         const newNovel ={
             title: novelObj.title,
             image: novelObj.image,
-            liked: novelObj.liked == 'true'? true : false,
+            liked: novelObj.liked === 'true'? true : false,
             chapters: novelObj.chapters,
             summary: novelObj.summary
         }
@@ -37,8 +37,8 @@ export default function AddNovel({handleAddNovel}) {
             body: JSON.stringify(newNovel),
           })
             .then((r) => r.json())
-            .then(data => handleAddNovel(data))
-            .then(()=>history.push("/Novels"))
+            .then(data => {handleAddNovel(data)
+                history.push("/Novels")})
     }
 
 
