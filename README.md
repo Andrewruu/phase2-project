@@ -17,20 +17,20 @@ Features available
 
 This project uses React. Using Componantes to make a one page application. 
 
+Installation 
+follow the steps below
+1. You will need to clone this repo and db repo from [link](https://github.com/Andrewruu/-phase2-project--db)
+2. Open terminal and navigate to where you clone the db 
+3. type in json-server --watch db.json to start the db server
+4. Open new terminal
+5. navigate to where you cloned this repo
+6. type npm install
+7. type npm start
+
 Link to a video demo below
 [link](https://youtu.be/XWSu-D2SgQM)
 
 Link where the images and novel names were taken from for this example
 [link](https://www.novelupdates.com/)
-
-Installation 
-follow the steps below
-1. You will need to clone this repo and db repo [link](https://github.com/Andrewruu/-phase2-project--db)
-2. Open terminal and navigate to where you clone the db 
-3. type in json-server --watch db.json
-4. Open new terminal
-5. navigate to where you cloned this repo
-6. type npm install
-7. type npm start
 
 Author:Andrewruu github [link](https://github.com/Andrewruu)
